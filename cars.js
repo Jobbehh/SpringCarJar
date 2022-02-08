@@ -32,7 +32,7 @@ const carRead = () => {
       console.log(err);
     });
 } 
-
+let passById;
 const createcar = () => {
   axios.post(`http://localhost:8080/car/create`, {
     "name" : `${DOM.name.value}`,
@@ -40,16 +40,79 @@ const createcar = () => {
     "make" : `${DOM.make.value}`,
     "model" : `${DOM.model.value}`,
     "doors" : `${DOM.doors.value}`,
+    "garage": {"id" : 4}
+    //nameToGarage(`${DOM.createGarageButton.value}`).toString()}
   })
     .then((response) => {
       console.log(response);
-      carRead();
+      getGarage();
     }).catch((err) => {
-      console.log(err.response.data);
-    });
-}
-DOM.CarCreate.onclick = () => { console.log(DOM.colour.value.toString(),DOM.doors.value,DOM.make.value, DOM.model.value, DOM.name.value,DOM.garageID.value);
-  createcar();}
+      console.log(err);
+  })};
+
+  DOM.CarCreate.onclick = () => {createcar();}
+      const nameToGarage = (str) => {
+        console.log(str)
+        axios.get(`http://localhost:8080/garage/read`)
+        .then((response) => {
+          for (const i of response.data) {      
+            console.log(i);
+             if(i.name == str) {
+                passById = i.id;
+             }
+          }
+          console.log(passById);
+      }).catch((err) => {
+          console.log(err);
+        });
+      return passById;}
+
+
+  // let passById;
+  // const createcar = () => {
+  //   axios.post(`http://localhost:8080/car/create`,
+  //       {
+  //         "name": `${DOM.carNameCreate.value}`,
+  //         "colour":`${DOM.carColourCreate.value}`,
+  //         "make": `${DOM.carMakeCreate.value}`,
+  //         "model": `${DOM.carModelCreate.value}`,
+  //         "doors": `${DOM.carDoorCreate.value}`,
+  //         "garage": {"id" : nameToGarage(`${DOM.carGarageCreate.value}`).toString()}
+  //       })
+  //       .then((response) => {
+  //           console.log(response);
+  //           // getGarage();
+  //       }).catch((err) => {
+  //           console.log(err);
+  //   })};
+  //   DOM.buttonCarCreate.onclick = () => {createcar();}
+  //     const nameToGarage = (str) => {
+  //       console.log(str)
+  //       axios.get(`http://localhost:8080/garage/read`)
+  //       .then((response) => {
+  //         for (const i of response.data) {      
+  //           console.log(i);
+  //            if(i.name == str) {
+  //               passById = i.id;
+  //            }
+  //         }
+  //         console.log(passById);
+  //     }).catch((err) => {
+  //         console.log(err);
+  //       });
+  //     return passById;}
+
+
+
+
+
+
+
+
+
+
+
+
 
   // const createcar = () => {
   //   axios.post(`http://localhost:8080/car/create`,
