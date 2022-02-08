@@ -35,12 +35,11 @@ const carRead = () => {
 
 const createcar = () => {
   axios.post(`http://localhost:8080/car/create`, {
-    name : DOM.name.value,
-    colour : DOM.colour.value,
-    make : DOM.make.value,
-    model : DOM.model.value,
-    doors : DOM.doors.value,
-    garage : {id : DOM.garageID.value}
+    "name" : `${DOM.name.value}`,
+    "colour" :`${DOM.colour.value}`,
+    "make" : `${DOM.make.value}`,
+    "model" : `${DOM.model.value}`,
+    "doors" : `${DOM.doors.value}`,
   })
     .then((response) => {
       console.log(response);
@@ -51,6 +50,42 @@ const createcar = () => {
 }
 DOM.CarCreate.onclick = () => { console.log(DOM.colour.value.toString(),DOM.doors.value,DOM.make.value, DOM.model.value, DOM.name.value,DOM.garageID.value);
   createcar();}
+
+  // const createcar = () => {
+  //   axios.post(`http://localhost:8080/car/create`,
+  //       {
+  //         "name": `${DOM.CarNameCreate.value}`,
+  //         "colour":`${DOM.CarColourCreate.value}`,
+  //         "make": `${DOM.CarMakeCreate.value}`,
+  //         "model": `${DOM.CarModelCreate.value}`,
+  //         "doors": `${DOM.CarDoorCreate.value}`,
+  //       })
+      
+  //       .then((response) => {
+  //           console.log(response);
+  //           getGarage();
+  //       }).catch((err) => {
+  //           console.log(err);
+  //   })};
+  //   DOM.CarCreate.onclick = () => { console.log(DOM.CarColourCreate.value.toString(),DOM.CarDoorCreate.value,DOM.CarMakeCreate.value, DOM.CarModelCreate.value, DOM.CarNameCreate.value,DOM.CarGarageCreate.value);
+  //     createcar();}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const carDelete = () => {
   axios.delete(`http://localhost:8080/car/delete/${DOM.deleteCarID.value}`)
@@ -66,11 +101,11 @@ const carDelete = () => {
 const carUpdate = () => {
   
   axios.put(`http://localhost:8080/car/update/${DOM.updateCarID.value}`, {
-    name : DOM.updateCarName.value,
-    colour : DOM.updateColour.value,
-    make : DOM.updateMake.value,
-    model : DOM.updateModel.value,
-    doors : DOM.updateDoors.value
+    "name" : `${DOM.updateCarName.value}`,
+    "colour" :`${DOM.updateColour.value}`,
+    "make" : `${DOM.updateMake.value}`,
+    "model" : `${DOM.updateModel.value}`,
+    "doors" : `${DOM.updateDoors.value}`
   })
     .then((response) => {
       console.log(response);
